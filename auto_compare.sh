@@ -19,5 +19,5 @@ git pull origin $branch_a
 git checkout $commitid_a
 
 
-compare.sh $cur/$cmppath $adir/$cmppath
+compare.sh $cur/$cmppath $CMPWORK1/$cmppath
 

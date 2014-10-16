@@ -16,8 +16,9 @@ function init()
   fi
 
   ret=`ls $CMPHTML|wc -l`
+  echo $ret
   if [ $ret != 0 ]; then
-    rm -vf $CMPHTML"/*.*"
+    `rm -vf $CMPHTML/*.*`
   fi
 }
 
