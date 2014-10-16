@@ -1,22 +1,23 @@
 #! /bin/bash
 
+source compare_config
 # 删除历史文件
 function init()
 {
-  if [ -d ~/Documents/diffhtml ]; then
+  if [ -d $CMPHTML ]; then
     echo exist
   else
-    `mkdir ~/Documents/diffhtml`
+    mkdir $CMPHTML
   fi
-  if [ -d ~/Documents/diffbak ]; then
+  if [ -d $CMPBAK ]; then
     echo exist
   else
-    `mkdir ~/Documents/diffbak`
+    mkdir $CMPBAK
   fi
 
-  ret=`ls ~/Documents/diffhtml|wc -l`
+  ret=`ls $CMPHTML|wc -l`
   if [ $ret != 0 ]; then
-    rm -vf ~/Documents/diffhtml/*.*
+    rm -vf $CMPHTML"/*.*"
   fi
 }
 
@@ -25,12 +26,12 @@ backup()
 {
   strdate=`date +%Y%m%d%H%M`
   echo $strdate
-  ret=`ls ~/Documents/diffhtml|wc -l`
+  ret=`ls $CMPHTML|wc -l`
   echo $ret
   if [ $ret != 0 ]; then
     c=`pwd`
-    cd ~/Documents/diffhtml/
-    tar -zcvf ~/Documents/diffbak/$strdate".gz" *.html
+    cd $CMPHTML
+    tar -zcvf $CMPBAK"/"$strdate".gz" *.html
     cd $c
   fi
 
@@ -44,8 +45,8 @@ function compare_file()
     echo "same"
   else
     echo compare $1,$2
-    vimdiff -e "$1" "$2" < /usr/local/bin/generate_diff_html.vim
-    mv Diff.html ~/Documents/diffhtml/$3".html"
+    vimdiff -e "$1" "$2" < /usr/local/bin/gen_report.vim
+    mv Diff.html $CMPHTML"/"$3".html"
   fi
 }
 

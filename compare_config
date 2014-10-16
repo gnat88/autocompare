@@ -1,0 +1,8 @@
+# 变量定义
+export CMPHOME=~/Applications/autocompare
+export CMPWORK1=~/Applications/autocompare/w1
+export CMPREPORT=~/Applications/autocompare/report
+export CMPHTML=$CMPREPORT"/html"
+export CMPBAK=$CMPREPORT"/bak"
+
+
