@@ -12,6 +12,7 @@ branch_a=$2
 commitid_a=$3
 
 cd $CMPWORK1
+
 git checkout master
 git branch -D $branch_a
 git checkout -b $branch_a origin/$branch_a

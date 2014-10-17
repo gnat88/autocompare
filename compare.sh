@@ -4,21 +4,21 @@ source compare_config
 # 删除历史文件
 function init()
 {
-  if [ -d $CMPHTML ]; then
+  if [ -d "$CMPHTML" ]; then
     echo exist
   else
-    mkdir $CMPHTML
+    mkdir "$CMPHTML"
   fi
-  if [ -d $CMPBAK ]; then
+  if [ -d "$CMPBAK" ]; then
     echo exist
   else
-    mkdir $CMPBAK
+    mkdir "$CMPBAK"
   fi
 
   ret=`ls $CMPHTML|wc -l`
   echo $ret
   if [ $ret != 0 ]; then
-    `rm -vf $CMPHTML/*.*`
+    rm -vf "$CMPHTML"/*.*
   fi
 }
 
@@ -32,7 +32,7 @@ backup()
   if [ $ret != 0 ]; then
     c=`pwd`
     cd $CMPHTML
-    tar -zcvf $CMPBAK"/"$strdate".gz" *.html
+    tar -zcvf $CMPBAK/$strdate".gz" *.html
     cd $c
   fi
 
@@ -46,8 +46,8 @@ function compare_file()
     echo "same"
   else
     echo compare $1,$2
-    vimdiff -e "$1" "$2" < /usr/local/bin/gen_report.vim
-    mv Diff.html $CMPHTML"/"$3".html"
+    vimdiff -e $1 $2 < /usr/local/bin/gen_report.vim
+    mv Diff.html $CMPHTML/$3".html"
   fi
 }
 
