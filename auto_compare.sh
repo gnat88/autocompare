@@ -15,7 +15,7 @@ branch_a=$2
 cd $CMPWORK1
 # 新建分支
 cur_branch=`git branch | grep "*"`
-if [ "$cur_branch" == "* $branch_a" ]; then
+if [ ! "$cur_branch" == "* $branch_a" ]; then
   git checkout master
   git branch -D $branch_a
   git checkout -b $branch_a origin/$branch_a
