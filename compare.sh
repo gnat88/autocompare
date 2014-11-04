@@ -74,7 +74,7 @@ echo "Generate diff html file begin !"
 echo $1 $2
 init
 if [ ! -d "$1" ]; then
-  compare_file $1 $2 "compare_diff"
+  compare_file $1 $2 `basename $1`
 else
   compare_path $1 $2
 fi

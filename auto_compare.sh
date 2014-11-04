@@ -13,6 +13,7 @@ branch_a=$2
 
 
 cd $CMPWORK1
+git fetch
 # 新建分支
 cur_branch=`git branch | grep "*"`
 if [ ! "$cur_branch" == "* $branch_a" ]; then
