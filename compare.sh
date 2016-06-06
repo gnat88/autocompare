@@ -47,7 +47,13 @@ function compare_file()
   else
     echo compare $1,$2
     vimdiff -e $1 $2 < /usr/local/bin/gen_report.vim
-    mv Diff.html $CMPHTML/$3".html"
+    if [ -f $CMPHTML/$3".html" ]
+    then
+      t=`date +%s`
+      mv Diff.html $CMPHTML/$3_$t".html"
+    else
+      mv Diff.html $CMPHTML/$3".html"
+    fi
   fi
 }
 
