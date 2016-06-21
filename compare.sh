@@ -49,7 +49,9 @@ function compare_file()
     vimdiff -e $1 $2 < /usr/local/bin/gen_report.vim
     if [ -f $CMPHTML/$3".html" ]
     then
-      t=`date +%s`
+      #t=`date +%s`
+      t=$counter
+      counter=`expr $counter + 1`
       mv Diff.html $CMPHTML/$3_$t".html"
     else
       mv Diff.html $CMPHTML/$3".html"
@@ -78,6 +80,7 @@ compare_path()
 # $1 $2 分别表示两个对比的路径
 echo "Generate diff html file begin !"
 echo $1 $2
+counter=1
 init
 if [ ! -d "$1" ]; then
   compare_file $1 $2 `basename $1`
